@@ -1,0 +1,14 @@
+#wrapper {
+	margin-top: 10% !important;
+}
+.navbar-nav {
+    margin:0 auto;
+    text-align: center;
+}
+.box {
+    padding: 0 50px 0 59px;
+}
+.row {
+  --bs-gutter-x: 1px; // column-gap
+  --bs-gutter-y: 1px;  // row-gap
+}

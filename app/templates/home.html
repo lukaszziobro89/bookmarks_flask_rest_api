@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ToDo App</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='darkly.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}" />
+
+	</head>
+	<body>
+{# --------------------------   NAVIGATION BAR   -------------------------- #}
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark id=navbar-nav">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Football APP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Home
+                    <span class="visually-hidden">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+{# --------------------------   END NAVIGATION BAR   -------------------------- #}
+
+
+{# --------------------------   LOGIN FIELDS   -------------------------- #}
+{#    	<div class="container" id="wrapper">#}
+{#            <div class="row">#}
+{#              <form action="{{ url_for('auth.login') }}" method="post">#}
+{#                  <div class="form-group">#}
+{#                      <fieldset>#}
+{#                        <div class="form-group" style="max-width: 20rem;">#}
+{#                          <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>#}
+{#                          <input name="login-email" type="email" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter email">#}
+{#                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>#}
+{#                        </div>#}
+{#                        <div class="form-group" style="max-width: 20rem;">#}
+{#                          <label for="exampleInputPassword1" class="form-label mt-4">Password</label>#}
+{#                          <input name="login-password" type="password" class="form-control" id="login-submit-button" placeholder="Password" >#}
+{#                        </div>#}
+{#                    </fieldset><br>#}
+{#                          <span class="input-group-btn">#}
+{#                              <input type="submit" class="btn btn-success" id="add-btn">#}
+{#                          </span>#}
+{#                  </div>#}
+{#              </form>#}
+{#            </div>#}
+{#        </div>#}
+    	<div class="container" id="wrapper">
+            <div class="row">
+              <form action="{{ url_for('auth.login') }}" method="post">
+                  <div class="form-group">
+                      <fieldset>
+
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                          <input name="input-email" type="email" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter email">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                          <input name="input-password" type="password" class="form-control" id="login-submit-button" placeholder="Password" >
+                        </div>
+
+                    </fieldset><br>
+                          <span class="input-group-btn">
+                              <input type="submit" class="btn btn-success" id="add-btn2">
+                          </span>
+                  </div>
+              </form>
+            </div>
+        </div>
+
+{# --------------------------  END LOGIN FIELDS   -------------------------- #}
+{# register fields working #}
+    	<div class="container" id="wrapper">
+            <div class="row">
+              <form action="{{ url_for('auth.register') }}" method="post">
+                  <div class="form-group">
+                      <fieldset>
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+                          <input name="register-username" type="text" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter username">
+                          <small id="emailHelp" class="form-text text-muted">username</small>
+                        </div>
+
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+                          <input name="register-email" type="email" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter email">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                          <input name="register-password" type="password" class="form-control" id="login-submit-button" placeholder="Password" >
+                        </div>
+
+                    </fieldset><br>
+                          <span class="input-group-btn">
+                              <input type="submit" class="btn btn-success" id="add-btn">
+                          </span>
+                  </div>
+              </form>
+            </div>
+        </div>
+
+	</body>
+</html>
