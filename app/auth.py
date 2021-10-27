@@ -1,6 +1,3 @@
-import functools
-import os
-
 from flask import Blueprint, request, jsonify, render_template, flash, redirect, url_for, g, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT, HTTP_201_CREATED, \
@@ -8,7 +5,6 @@ from constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT,
 import validators
 from app.database import User, db
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, set_refresh_cookies, set_access_cookies
-import jwt
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
@@ -50,18 +46,9 @@ def register():
 
     return render_template('home.html'), HTTP_201_CREATED
 
-    # return jsonify({
-    #     'message': "User created",
-    #     'user': {
-    #         'username': username, 'email': email
-    #     }
-    # }), HTTP_201_CREATED
-
 
 @auth.post("/login")
 def login():
-    # email = request.json.get('email', '')
-    # password = request.json.get('password', '')
 
     email = request.form['input-email']
     password = request.form['input-password']
@@ -73,24 +60,10 @@ def login():
         if is_pass_correct:
             refresh_token = create_refresh_token(identity=user.id)
             access_token = create_access_token(identity=user.id)
-            # resp = jsonify({'login': True})
-            # resp = redirect(url_for('main.home'))
             resp = redirect(url_for('main.home'), 302)
             set_access_cookies(resp, access_token)
             set_refresh_cookies(resp, refresh_token)
-            # resp.he
-
-            # return jsonify({
-            #     'user': {
-            #         'refresh': refresh,
-            #         'access': access,
-            #         'username': user.username,
-            #         'email': user.email
-            #     }
-            # }), HTTP_200_OK
-            return resp#, 200
-            # return render_template('home.html')
-        # return jsonify(access_token=access)
+            return resp
 
     return jsonify({'error': 'Wrong credentials'}), HTTP_401_UNAUTHORIZED
 
@@ -104,44 +77,3 @@ def me():
         'username': user.username,
         'email': user.email
     }), HTTP_200_OK
-
-
-# def login_required(view):
-#     @functools.wraps(view)
-#     def wrapped_view(**kwargs):
-#         if g.user is None:
-#             return redirect(url_for('auth.login'))
-#         return view(**kwargs)
-#     return wrapped_view
-
-
-# @auth.before_request
-# def load_user():
-#     if session["user_id"]:
-#         user = User.query.filter_by(id=session["id"]).first()
-#     else:
-#         user = {"name": "Guest"}
-#     g.user = user
-
-
-# def token_required(f):
-#     @functools.wraps(f)
-#     def decorator(*args, **kwargs):
-#         token = None
-#         if 'access' in request.headers:
-#             token = request.headers['access']
-#
-#         if not token:
-#             return jsonify({'message': 'a valid token is missing'})
-#         try:
-#             data = jwt.decode(token, os.environ.get("JWT_SECRET_KEY"))
-#             print(data)
-#             current_user = User.query.filter_by(id=data['id']).first()
-#             print(current_user)
-#             # User.query.filter_by(email=email)
-#         except:
-#             return jsonify({'message': 'token is invalid'})
-#
-#         return f(current_user, *args, **kwargs)
-#
-#     return decorator
