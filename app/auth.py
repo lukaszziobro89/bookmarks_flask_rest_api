@@ -70,7 +70,8 @@ def login():
             set_refresh_cookies(resp, refresh_token)
             return resp
 
-    return jsonify({'error': 'Wrong credentials'}), HTTP_401_UNAUTHORIZED
+    flash("Wrong credentials"), HTTP_400_BAD_REQUEST
+    return redirect(url_for('main.login'))
 
 
 @auth.get("/me")
