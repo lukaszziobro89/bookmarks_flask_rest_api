@@ -17,27 +17,27 @@ def register():
 
     if len(password) < 6:
         flash("Password is too short"), HTTP_400_BAD_REQUEST
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.register_user'))
 
     if len(username) < 3:
-        flash("Username is too short"), HTTP_400_BAD_REQUEST
-        return redirect(url_for('main.home'))
+        flash("Username is too short - need to contains at least 3 characters"), HTTP_400_BAD_REQUEST
+        return redirect(url_for('main.register_user'))
 
     if not username.isalnum() or " " in username:
         flash("Username must be alphanumeric and must not contain space"), HTTP_400_BAD_REQUEST
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.register_user'))
 
     if not validators.email(email):
         flash("Not a valid email"), HTTP_400_BAD_REQUEST
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.register_user'))
 
     if User.query.filter_by(email=email).first() is not None:
         flash("Email already taken"), HTTP_409_CONFLICT
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.register_user'))
 
     if User.query.filter_by(username=username).first() is not None:
         flash("Username already exists"), HTTP_409_CONFLICT
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.register_user'))
 
     pwd_hash = generate_password_hash(password)
     user = User(username=username, password=pwd_hash, email=email)
