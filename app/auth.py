@@ -44,7 +44,12 @@ def register():
     db.session.add(user)
     db.session.commit()
 
-    return render_template('home.html'), HTTP_201_CREATED
+    refresh_token = create_refresh_token(identity=user.id)
+    access_token = create_access_token(identity=user.id)
+    resp = redirect(url_for('main.home'), 302)
+    set_access_cookies(resp, access_token)
+    set_refresh_cookies(resp, refresh_token)
+    return resp
 
 
 @auth.post("/login")
