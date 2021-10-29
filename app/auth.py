@@ -1,10 +1,13 @@
+from functools import wraps
+
 from flask import Blueprint, request, jsonify, render_template, flash, redirect, url_for, g, session
 from werkzeug.security import check_password_hash, generate_password_hash
-from constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT, HTTP_201_CREATED, \
+from app.constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT, HTTP_201_CREATED, \
     HTTP_401_UNAUTHORIZED, HTTP_200_OK
 import validators
 from app.database import User, db
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, set_refresh_cookies, set_access_cookies
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, \
+    set_refresh_cookies, set_access_cookies
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
@@ -73,9 +76,16 @@ def login():
     flash("Wrong credentials"), HTTP_400_BAD_REQUEST
     return redirect(url_for('main.login'))
 
+# TODO: logout
+# @app.route("/logout", methods=["POST"])
+# def logout():
+#     response = jsonify({"msg": "logout successful"})
+#     unset_jwt_cookies(response)
+#     return response
+
 
 @auth.get("/me")
-@jwt_required()
+@jwt_required(refresh=True)
 def me():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
@@ -83,3 +93,8 @@ def me():
         'username': user.username,
         'email': user.email
     }), HTTP_200_OK
+
+
+def log_required():
+    flash("You have to be logged in to access this page.")
+    return redirect(url_for('main.login'))

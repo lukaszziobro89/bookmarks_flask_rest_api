@@ -1,10 +1,11 @@
 from flask import Flask
 import os
-from app.auth import auth
+from app.auth import auth, log_required
 from app.bookmarks import bookmarks
 from app.database import db
 from flask_jwt_extended import JWTManager
 from app.main import main
+from flask import redirect, url_for
 
 
 def create_app(test_config=None):
@@ -27,7 +28,11 @@ def create_app(test_config=None):
     db.app = app
     db.init_app(app)
 
-    JWTManager(app)
+    jwt = JWTManager(app)
+
+    @jwt.unauthorized_loader
+    def unauthorized_callback(callback):
+        return log_required()
 
     app.register_blueprint(main)
 

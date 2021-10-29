@@ -20,10 +20,16 @@ def login():
 
 
 @main.route('/handle_data', methods=['GET'])
-@jwt_required()
+@jwt_required(refresh=True)
 def handle_data():
     user = get_jwt_identity()
     return jsonify({'user': user})
+
+
+@main.route('/exp', methods=['GET'])
+@jwt_required(refresh=True)
+def exp():
+    return jsonify({'user': "IAM"})
 
 
 @main.post('/add_todo')
