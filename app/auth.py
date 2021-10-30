@@ -7,7 +7,7 @@ from app.constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFL
 import validators
 from app.database import User, db
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, \
-    set_refresh_cookies, set_access_cookies
+    set_refresh_cookies, set_access_cookies, unset_jwt_cookies
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
@@ -76,12 +76,14 @@ def login():
     flash("Wrong credentials"), HTTP_400_BAD_REQUEST
     return redirect(url_for('main.login'))
 
+
 # TODO: logout
-# @app.route("/logout", methods=["POST"])
-# def logout():
-#     response = jsonify({"msg": "logout successful"})
-#     unset_jwt_cookies(response)
-#     return response
+@auth.route("/logout")
+def logout():
+    resp = redirect(url_for('main.home'), 200)
+    unset_jwt_cookies(resp)
+    # flash("Succesfully logged out!"), HTTP_200_OK
+    return resp
 
 
 @auth.get("/me")
