@@ -5,6 +5,11 @@ main = Blueprint("main", __name__, url_prefix="/api/v1/bookmarks")
 
 
 @main.route('/home')
+def welcome():
+    return render_template('welcome.html')
+
+
+@main.route('/')
 def home():
     return render_template('home.html')
 

@@ -1,9 +1,6 @@
-from functools import wraps
-
-from flask import Blueprint, request, jsonify, render_template, flash, redirect, url_for, g, session
+from flask import Blueprint, request, jsonify, flash, redirect, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT, HTTP_201_CREATED, \
-    HTTP_401_UNAUTHORIZED, HTTP_200_OK
+from app.constants.http_status_codes import HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT, HTTP_200_OK
 import validators
 from app.database import User, db
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, \
@@ -74,15 +71,13 @@ def login():
             return resp
 
     flash("Wrong credentials"), HTTP_400_BAD_REQUEST
-    return redirect(url_for('main.login'))
+    return redirect(url_for('main.home'))
 
 
-# TODO: logout
 @auth.route("/logout")
 def logout():
-    resp = redirect(url_for('main.home'), 200)
+    resp = redirect(url_for('main.welcome'), 302)
     unset_jwt_cookies(resp)
-    # flash("Succesfully logged out!"), HTTP_200_OK
     return resp
 
 
@@ -99,4 +94,4 @@ def me():
 
 def log_required():
     flash("You have to be logged in to access this page.")
-    return redirect(url_for('main.login'))
+    return redirect(url_for('main.welcome'))

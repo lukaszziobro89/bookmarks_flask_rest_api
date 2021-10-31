@@ -3,9 +3,9 @@ import os
 from app.auth import auth, log_required
 from app.bookmarks import bookmarks
 from app.database import db
+from app.services.microservice import micro
 from flask_jwt_extended import JWTManager
 from app.main import main
-from flask import redirect, url_for
 
 
 def create_app(test_config=None):
@@ -38,5 +38,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth)
     app.register_blueprint(bookmarks)
+
+    app.register_blueprint(micro)
 
     return app

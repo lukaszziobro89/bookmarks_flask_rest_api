@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "welcome.html" %}
 
 {% block head %}
   {{ super() }}
 {% endblock %}
+		<title>Login</title>
 
 {% block content %}
-{# --------------------------   LOGIN FIELDS   -------------------------- #}
     	<div class="container" id="wrapper">
             <div class="row">
             <h1>Login</h1>
@@ -29,76 +29,8 @@
                               <input type="submit" class="btn btn-success" id="add-btn2">
                           </span>
                   </div>
-
-                    {#         VALIDATION         #}
-                  <div class="container">
-                      {% with messages = get_flashed_messages() %}
-                          {% if messages %}
-                            {% for message in messages %}
-                                  <div class="alert alert-warning alert-dismissible fade show" role="alert" style="max-width: 20rem;">
-                                      <span>{{ message }}</span>
-                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                  </div>
-                            {% endfor %}
-                          {% endif %}
-                      {% endwith %}
-                  </div>
-
-
               </form>
             </div>
         </div>
-
-{# --------------------------  END LOGIN FIELDS   -------------------------- #}
-
-{# --------------------------  REGISTER FIELDS   -------------------------- #}
-{#    	<div class="container" id="wrapper">#}
-{#            <div class="row">#}
-{#              <form action="{{ url_for('auth.register') }}" method="post">#}
-{#                  <div class="form-group">#}
-{#                      <fieldset>#}
-{#                        <div class="form-group" style="max-width: 20rem;">#}
-{#                          <label for="exampleInputEmail1" class="form-label mt-4">Username</label>#}
-{#                          <input name="register-username" type="text" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter username">#}
-{#                          <small id="emailHelp" class="form-text text-muted">username</small>#}
-{#                        </div>#}
-{#REGISTER#}
-{#                        <div class="form-group" style="max-width: 20rem;">#}
-{#                          <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>#}
-{#                          <input name="register-email" type="email" class="form-control" id="login-submit-button" aria-describedby="emailHelp" placeholder="Enter email">#}
-{#                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>#}
-{#                        </div>#}
-{##}
-{#                        <div class="form-group" style="max-width: 20rem;">#}
-{#                          <label for="exampleInputPassword1" class="form-label mt-4">Password</label>#}
-{#                          <input name="register-password" type="password" class="form-control" id="login-submit-button" placeholder="Password" >#}
-{#                        </div>#}
-{##}
-{#                    </fieldset><br>#}
-{#                          <span class="input-group-btn">#}
-{#                              <input type="submit" class="btn btn-success" id="add-btn">#}
-{#                          </span>#}
-{#                  </div>#}
-{#                  #}
-                  {#         VALIDATION         #}
-{#                  <div class="container">#}
-{#                      {% with messages = get_flashed_messages() %}#}
-{#                          {% if messages %}#}
-{#                            {% for message in messages %}#}
-{#                                  <div class="alert alert-warning alert-dismissible fade show" role="alert" style="max-width: 20rem;">#}
-{#                                      <span>{{ message }}</span>#}
-{#                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
-{#                                  </div>#}
-{#                            {% endfor %}#}
-{#                          {% endif %}#}
-{#                      {% endwith %}#}
-{#                  </div>#}
-{##}
-{#              </form>#}
-{#            </div>#}
-{#        </div>#}
-{# --------------------------  END REGISTER FIELDS   -------------------------- #}
 {% endblock %}
 
-{#	</body>#}
-{#</html>#}

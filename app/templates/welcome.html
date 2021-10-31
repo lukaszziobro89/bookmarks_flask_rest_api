@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{% block title %}{% endblock %} - My Webpage</title>
+        <title>Bookmarks</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{ url_for('static', filename='darkly.min.css') }}" />
@@ -21,7 +21,6 @@
 	<body>
 
 {% block navbar %}
-{# --------------------------   NAVIGATION BAR   -------------------------- #}
         <nav class="navbar navbar-expand-md navbar-dark bg-dark id=navbar-nav">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Football APP</a>
@@ -31,12 +30,9 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="{{ url_for('main.home') }}">Home
+                  <a class="nav-link active" href="{{ url_for('main.welcome') }}">Home
                     <span class="visually-hidden">(current)</span>
                   </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
@@ -44,16 +40,32 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('main.register_user') }}">Register</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('micro.micro_abc') }}">micro_abc</a>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
 {% endblock %}
 
-{# --------------------------   END NAVIGATION BAR   -------------------------- #}
     {% block content %}
-
-
+                  <div class="container">
+                      {% with messages = get_flashed_messages() %}
+                          {% if messages %}
+                            {% for message in messages %}
+                                  <div class="alert alert-dismissible alert-warning" role="alert" style="max-width: 30rem;">
+                                    <h4 class="alert-heading">Warning!</h4>
+                                    <p class="mb-0">{{ message }}</p>
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                  </div>
+                            {% endfor %}
+                          {% endif %}
+                      {% endwith %}
+                  </div>
     {% endblock %}
+
+    WELCOME PAGE
+
 	</body>
 </html>
