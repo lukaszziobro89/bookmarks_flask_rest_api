@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-main = Blueprint("main", __name__, url_prefix="/api/v1/bookmarks")
+main = Blueprint("main", __name__, url_prefix="/api/v1/main")
 
 
 @main.route('/home')
