@@ -37,13 +37,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ url_for('main.handle_data') }}" method="get">
+                    <form action="{{ url_for('main.handle_data') }}">
                         <button type="submit" class="btn btn-dark">Handle_data</button>
                     </form>
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ url_for('main.exp') }}" method="get">
+                    <form action="{{ url_for('main.exp') }}">
                         <button type="submit" class="btn btn-dark">Exp</button>
                     </form>
                 </li>
@@ -55,13 +55,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ url_for('bookmarks.handle_bookmarks') }}" method="get">
+                    <form action="{{ url_for('bookmarks.handle_bookmarks') }}">
                         <button type="submit" class="btn btn-dark">Get Bookmarks</button>
                     </form>
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ url_for('auth.logout') }}" method="get">
+                    <form action="{{ url_for('auth.logout') }}">
                         <button type="submit" class="btn btn-dark">Logout</button>
                     </form>
                 </li>
