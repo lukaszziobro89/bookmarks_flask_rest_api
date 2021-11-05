@@ -7,6 +7,12 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 bookmarks = Blueprint("bookmarks", __name__, url_prefix="/api/v1/bookmarks")
 
 
+@bookmarks.route("/", methods=['POST'])
+@jwt_required()
+def handle_bookmarks2():
+    return render_template('bookmarks_post.html')
+
+
 @bookmarks.route("/", methods=['GET', 'POST'])
 @jwt_required()
 def handle_bookmarks():
