@@ -34,11 +34,13 @@ def create_app(test_config=None):
     def unauthorized_callback(callback):
         return log_required()
 
-    app.register_blueprint(main)
+    @jwt.invalid_token_loader
+    def invalid_token_loader(callback):
+        return log_required()
 
+    app.register_blueprint(main)
     app.register_blueprint(auth)
     app.register_blueprint(bookmarks)
-
     app.register_blueprint(micro)
 
     return app
