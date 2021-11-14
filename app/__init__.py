@@ -38,6 +38,10 @@ def create_app(test_config=None):
     def invalid_token_loader(callback):
         return log_required()
 
+    @jwt.expired_token_loader
+    def my_expired_token_callback(jwt_header, jwt_payload):
+        return log_required()
+
     app.register_blueprint(main)
     app.register_blueprint(auth)
     app.register_blueprint(bookmarks)
