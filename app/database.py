@@ -30,7 +30,7 @@ class Bookmark(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=datetime.now())
 
     def __init__(self, **kwargs):
-        super().__init__(*kwargs)
+        super().__init__(**kwargs)
         self.short_url = self.generate_short_characters()
 
     def __repr__(self) -> str:
