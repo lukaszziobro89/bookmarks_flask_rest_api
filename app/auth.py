@@ -16,27 +16,27 @@ def register():
     password = request.form['register-password']
 
     if len(password) < 6:
-        flash("Password is too short"), HTTP_400_BAD_REQUEST
+        flash("Password is too short", 'error'), HTTP_400_BAD_REQUEST
         return redirect(url_for('main.register_user'))
 
     if len(username) < 3:
-        flash("Username is too short - need to contains at least 3 characters"), HTTP_400_BAD_REQUEST
+        flash("Username is too short - need to contains at least 3 characters", 'error'), HTTP_400_BAD_REQUEST
         return redirect(url_for('main.register_user'))
 
     if not username.isalnum() or " " in username:
-        flash("Username must be alphanumeric and must not contain space"), HTTP_400_BAD_REQUEST
+        flash("Username must be alphanumeric and must not contain space", 'error'), HTTP_400_BAD_REQUEST
         return redirect(url_for('main.register_user'))
 
     if not validators.email(email):
-        flash("Not a valid email"), HTTP_400_BAD_REQUEST
+        flash("Not a valid email", 'error'), HTTP_400_BAD_REQUEST
         return redirect(url_for('main.register_user'))
 
     if User.query.filter_by(email=email).first() is not None:
-        flash("Email already taken"), HTTP_409_CONFLICT
+        flash("Email already taken", 'error'), HTTP_409_CONFLICT
         return redirect(url_for('main.register_user'))
 
     if User.query.filter_by(username=username).first() is not None:
-        flash("Username already exists"), HTTP_409_CONFLICT
+        flash("Username already exists", 'error'), HTTP_409_CONFLICT
         return redirect(url_for('main.register_user'))
 
     pwd_hash = generate_password_hash(password)
@@ -70,7 +70,7 @@ def login():
             set_refresh_cookies(resp, refresh_token)
             return resp
 
-    flash("Wrong credentials"), HTTP_400_BAD_REQUEST
+    flash("Wrong credentials", 'error'), HTTP_400_BAD_REQUEST
     return redirect(url_for('main.home'))
 
 
@@ -93,5 +93,5 @@ def me():
 
 
 def log_required():
-    flash("You have to be logged in to access this page.")
-    return redirect(url_for('main.welcome'))
+    flash("You have to be logged in to access this page.", 'warning')
+    return redirect(url_for('main.login'))
