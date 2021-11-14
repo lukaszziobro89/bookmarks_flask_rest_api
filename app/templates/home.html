@@ -37,18 +37,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="{{ url_for('main.handle_data') }}">
-                        <button type="submit" class="btn btn-dark">Handle_data</button>
-                    </form>
-                </li>
-
-                <li class="nav-item">
-                    <form action="{{ url_for('main.exp') }}">
-                        <button type="submit" class="btn btn-dark">Exp</button>
-                    </form>
-                </li>
-
-                <li class="nav-item">
                     <form action="{{ url_for('bookmarks.show_add_bookmark_form') }}" method="post">
                         <button type="submit" class="btn btn-dark">Add Bookmark</button>
                     </form>
@@ -76,11 +64,17 @@
 {# --------------------------   END NAVIGATION BAR   -------------------------- #}
 
 {% block content %}
-HOME PAGE
+
+    {% block logos %}
+        <div class="container">
+            <img src="/static/images/bookmark_logo.png" alt="logo" >
+            <img src="/static/images/bookmark.png" alt="logo" width="100" height="100">
+        </div>
+    {% endblock %}
 
     {% block content_messages %}
-
         <div class="container">
+
             <br>
             {% with messages = get_flashed_messages(with_categories=True) %}
                 {% if messages %}

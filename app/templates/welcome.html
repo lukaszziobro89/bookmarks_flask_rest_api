@@ -51,8 +51,17 @@
 
     {% block content %}
 
+        {% block logos %}
+            <div class="container">
+                <img src="/static/images/bookmark_logo.png" alt="logo" >
+                <img src="/static/images/bookmark.png" alt="logo" width="100" height="100">
+            </div>
+        {% endblock %}
+
         {% block content_messages %}
+            <br>
                   <div class="container">
+
                       {% with messages = get_flashed_messages(with_categories=True) %}
                           {% if messages %}
                             {% for category, message in messages %}
@@ -87,9 +96,8 @@
                   </div>
         {% endblock %}
 
-    {% endblock %}
 
-    WELCOME PAGE
+    {% endblock %}
 
 	</body>
 </html>

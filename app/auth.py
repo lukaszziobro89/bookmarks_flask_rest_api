@@ -86,6 +86,7 @@ def logout():
 def me():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
+    # TODO: add new page with render_template instead of jsonify
     return jsonify({
         'username': user.username,
         'email': user.email
