@@ -32,5 +32,10 @@
               </form>
             </div>
         </div>
+
+        {% block content_messages %}
+            {{ super() }}
+        {% endblock %}
+
 {% endblock %}
 

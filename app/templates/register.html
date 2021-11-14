@@ -33,18 +33,9 @@
                           </span>
                   </div>
 
-                  <div class="container">
-                      {% with messages = get_flashed_messages() %}
-                          {% if messages %}
-                            {% for message in messages %}
-                                  <div class="alert alert-warning alert-dismissible fade show" role="alert" style="max-width: 20rem;">
-                                      <span>{{ message }}</span>
-                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                  </div>
-                            {% endfor %}
-                          {% endif %}
-                      {% endwith %}
-                  </div>
+        {% block content_messages %}
+            {{ super() }}
+        {% endblock %}
 
               </form>
             </div>

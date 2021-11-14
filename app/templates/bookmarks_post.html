@@ -9,21 +9,33 @@
 {% block content %}
     	<div class="container" id="wrapper">
             <div class="row">
-BOOKMARKS POST
-{#                  <div class="container">#}
-{#                      {% with bookmarks = bookmarks %}#}
-{#                          {% if bookmarks %}#}
-{#                            {% for bookmark in bookmarks %}#}
-{#                                  <div class="alert alert-dismissible alert-warning" role="alert" style="max-width: 30rem;">#}
-{#                                    <h4 class="alert-heading">Warning!</h4>#}
-{#                                    <p class="mb-0">{{ bookmark.id }}</p>#}
-{#                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
-{#                                  </div>#}
-{#                            {% endfor %}#}
-{#                          {% endif %}#}
-{#                      {% endwith %}#}
-{#                  </div>#}
+                <h3>ADDING BOOKMARK</h3>
 
+            <form action="{{ url_for('bookmarks.handle_bookmarks') }}" method="post">
+                  <div class="form-group">
+                      <fieldset>
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputEmail1" class="form-label mt-4">URL</label>
+                          <input name="input-url" type="text" class="form-control" id="add-bookmark-submit-button" aria-describedby="emailHelp" placeholder="Put URL here">
+                        </div>
+
+                        <div class="form-group" style="max-width: 20rem;">
+                          <label for="exampleInputPassword1" class="form-label mt-4">Body</label>
+                            <label for="add-bookmark-submit-button"></label>
+                            <input name="input-body" type="text" class="form-control" id="add-bookmark-submit-button" placeholder="Put description here" >
+                        </div>
+
+                    </fieldset><br>
+                          <span class="input-group-btn">
+                              <input type="submit" class="btn btn-success" id="add-btn2">
+                          </span>
+                  </div>
+
+              </form>
+
+        {% block content_messages %}
+            {{ super() }}
+        {% endblock %}
 
             </div>
         </div>
