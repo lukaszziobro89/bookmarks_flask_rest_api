@@ -13,6 +13,15 @@
                 <h1>BOOKMARKS GET</h1>
 
 
+                          {% if bookmarks %}
+                            {% for bookmark in bookmarks %}
+
+                                    {{ bookmark.url }}
+
+                            {% endfor %}
+                          {% endif %}
+
+
             </div>
         </div>
 {% endblock %}

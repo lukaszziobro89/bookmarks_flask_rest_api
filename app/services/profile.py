@@ -1,10 +1,10 @@
 from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required
 
-micro = Blueprint("micro", __name__, url_prefix="/api/v1/bookmarks/micro")
+profile = Blueprint("micro", __name__, url_prefix="/api/v1/bookmarks/profile")
 
 
-@micro.route('/abc')
+@profile.route('/')
 @jwt_required()
-def micro_abc():
+def my_profile():
     return jsonify({'micro': 'service'})
