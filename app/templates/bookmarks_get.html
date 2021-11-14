@@ -10,16 +10,37 @@
     	<div class="container" id="wrapper">
             <div class="row">
 
-                <h1>BOOKMARKS GET</h1>
-
+                <h1>BOOKMARKS LIST</h1>
 
                           {% if bookmarks %}
                             {% for bookmark in bookmarks %}
+                                <div class="card mb-3" style="max-width: 20rem;">
+                                  <h3 class="card-header">Bookmark {{ bookmark.id }}</h3>
+                                  <div class="card-body">
+                                    <h6 class="card-subtitle text-muted">{{ bookmark.url }}</h6>
+                                  </div>
+                                  <div class="card-body">
+                                    <p class="card-text">{{ bookmark.body }}</p>
+                                  </div>
+                                  <ul class="list-group list-group-flush">
+                                  </ul>
+                                  <div class="card-body">
+                                  <form action="{{ url_for('bookmarks.delete_bookmark', bookmark_id=bookmark.id) }}" method="post">
+                                          <button type="submit" class="btn btn-danger">Delete bookmark</button>
+                                  </form>
 
-                                    {{ bookmark.url }}
+                                  </div>
+                                  <div class="card-footer text-muted">
+                                    Created at {{ bookmark.created_at.strftime('%Y-%m-%d, %H:%M:%S') }}
+                                  </div>
+                                </div>
 
                             {% endfor %}
                           {% endif %}
+
+        {% block content_messages %}
+            {{ super() }}
+        {% endblock %}
 
 
             </div>

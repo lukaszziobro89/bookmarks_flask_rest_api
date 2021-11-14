@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template, flash, redirect, url_for
+from flask import Blueprint, request, render_template, flash
 import validators
 from app.database import Bookmark, db
 from flask_jwt_extended import get_jwt_identity, jwt_required
@@ -51,6 +51,21 @@ def handle_bookmarks():
                 'updated_at': bookmark.updated_at
             })
         return render_template('bookmarks_get.html', bookmarks=data)
+
+
+@bookmarks.post("/bookmark/delete/<bookmark_id>")
+@jwt_required()
+def delete_bookmark(bookmark_id):
+    current_user = get_jwt_identity()
+
+    bookmark = Bookmark.query.filter_by(id=bookmark_id).first()
+
+    db.session.delete(bookmark)
+    db.session.commit()
+
+    bookmarks_list = Bookmark.query.filter_by(user_id=current_user)
+    # flash("Bookmark deleted!", 'primary'), 302
+    return render_template('bookmarks_get.html', bookmarks=bookmarks_list)
 
 
 @bookmarks.post("/bookmark")

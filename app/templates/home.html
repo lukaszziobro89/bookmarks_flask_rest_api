@@ -31,9 +31,9 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="{{ url_for('main.home') }}">Home
-                    <span class="visually-hidden">(current)</span>
-                  </a>
+                    <form action="{{ url_for('main.home') }}" >
+                        <button type="submit" class="btn btn-dark">Home</button>
+                    </form>
                 </li>
 
                 <li class="nav-item">
@@ -45,6 +45,12 @@
                 <li class="nav-item">
                     <form action="{{ url_for('bookmarks.handle_bookmarks') }}">
                         <button type="submit" class="btn btn-dark">Get Bookmarks</button>
+                    </form>
+                </li>
+
+                <li class="nav-item">
+                    <form action="{{ url_for('micro.my_profile') }}">
+                        <button type="submit" class="btn btn-dark">My Profile</button>
                     </form>
                 </li>
 
@@ -81,6 +87,7 @@
                     {% for category, message in messages %}
                         {% if category == 'success' %}
                             <div class="alert alert-dismissible alert-success" role="alert" style="max-width: 30rem;">
+                                <i class="bi-check-circle-fill"></i>
                                 <h4 class="alert-heading">Success!</h4>
                                 <p class="mb-0">{{ message }}</p>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -95,11 +102,20 @@
                         {% endif %}
                         {% if category == 'error' %}
                             <div class="alert alert-dismissible alert-danger" role="alert" style="max-width: 30rem;">
-                                <h4 class="alert-heading">Warning!</h4>
+                                <h4 class="alert-heading">Error!</h4>
                                 <p class="mb-0">{{ message }}</p>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endif %}
+
+                        {% if category == 'primary' %}
+                            <div class="alert alert-dismissible alert-primary" role="alert" style="max-width: 30rem;">
+                              <h4 class="alert-heading">Deleted!</h4>
+                                <p class="mb-0">{{ message }}</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+
                     {% endfor %}
                 {% endif %}
             {% endwith %}
