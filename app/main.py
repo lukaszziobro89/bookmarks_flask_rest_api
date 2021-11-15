@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask import Blueprint, render_template
+from flask_jwt_extended import jwt_required
 
 main = Blueprint("main", __name__, url_prefix="/api/v1/")
 
