@@ -6,6 +6,8 @@ from app.database import db
 from app.services.profile import profile
 from flask_jwt_extended import JWTManager
 from app.main import main
+from flasgger import Swagger
+from app.config.swagger import template, swagger_config
 
 
 def create_app(test_config=None):
@@ -20,7 +22,12 @@ def create_app(test_config=None):
             JWT_TOKEN_LOCATION=['cookies'],
             JWT_COOKIE_SECURE=True,
             JWT_COOKIE_CSRF_PROTECT=False,
-            JWT_ACCESS_COOKIE_PATH='/api/v1/'
+            JWT_ACCESS_COOKIE_PATH='/api/v1/',
+
+            SWAGGER = {
+                'title': "Bookmarks API",
+                'uiversion': 3
+            }
         )
     else:
         app.config.from_mapping(test_config)
@@ -29,6 +36,8 @@ def create_app(test_config=None):
     db.init_app(app)
 
     jwt = JWTManager(app)
+
+    Swagger(app, config=swagger_config, template=template)
 
     @jwt.unauthorized_loader
     def unauthorized_callback(callback):

@@ -1,0 +1,29 @@
+Get microservice
+---
+tags:
+  - Microservice
+paths:
+  /:
+    get:
+      parameters:
+        - in: query
+          name: role
+          schema:
+            type: string
+            enum: [user, poweruser, admin]
+          required: true
+#parameters:
+#  - name: body
+#    description: The body should contain the user login credentials
+#    schema:
+#      type: object
+#      properties:
+#        micro:
+#          type: "string"
+#          example: "service"
+responses:
+  200:
+    description: Returns microservice
+
+  400:
+    description: Fails to return microservice

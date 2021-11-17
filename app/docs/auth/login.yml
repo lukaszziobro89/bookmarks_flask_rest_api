@@ -1,0 +1,40 @@
+User log in
+---
+tags:
+  - Authentication
+parameters:
+  - name: input-email
+    description: The body should contain the user email
+    in: formData
+    type: email
+    example: "user@gmail.com"
+  - name: input-password
+    description: The body should contain the password email
+    in: formData
+    type: password
+    format: password
+    example: "********"
+#      items: {
+#               "email": ,
+#               "password": "string"
+#      }
+#      required:
+#        - "email"
+#        - "password"
+#      properties:
+#        input-email:
+#          type: "email"
+#          example: "user@gmail.com"
+#        password:
+#          type: "string"
+#          format: password
+#          example: "********"
+responses:
+  200:
+    description: When a user successfully logs in
+
+  400:
+    description: Fails to login due to bad request data
+
+  401:
+    description: A user supplies incorrect credentials

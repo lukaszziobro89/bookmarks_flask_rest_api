@@ -5,6 +5,7 @@ import validators
 from app.database import User, db
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, \
     set_refresh_cookies, set_access_cookies, unset_jwt_cookies
+from flasgger import swag_from
 
 auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
 
@@ -53,6 +54,7 @@ def register():
 
 
 @auth.post("/login")
+@swag_from('./docs/auth/login.yml')
 def login():
 
     email = request.form['input-email']
