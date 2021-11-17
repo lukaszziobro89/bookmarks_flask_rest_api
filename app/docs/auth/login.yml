@@ -14,21 +14,6 @@ parameters:
     type: password
     format: password
     example: "********"
-#      items: {
-#               "email": ,
-#               "password": "string"
-#      }
-#      required:
-#        - "email"
-#        - "password"
-#      properties:
-#        input-email:
-#          type: "email"
-#          example: "user@gmail.com"
-#        password:
-#          type: "string"
-#          format: password
-#          example: "********"
 responses:
   200:
     description: When a user successfully logs in

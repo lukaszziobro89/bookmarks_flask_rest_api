@@ -6,7 +6,7 @@ profile = Blueprint("micro", __name__, url_prefix="/api/v1/bookmarks/profile")
 
 
 @profile.route('/')
-# @swag_from('./docs/services/profile.yml')
-# @jwt_required()
+@swag_from('./docs/services/profile.yml')
+@jwt_required()
 def my_profile():
     return jsonify({'micro': 'service'})
