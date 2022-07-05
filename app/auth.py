@@ -6,7 +6,7 @@ from app.database import User, db
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, \
     set_refresh_cookies, set_access_cookies, unset_jwt_cookies
 
-auth = Blueprint("auth", __name__, url_prefix="/api/v1/auth")
+auth = Blueprint("auth", __name__)
 
 
 @auth.post("/register")
@@ -94,5 +94,5 @@ def me():
 
 
 def log_required():
-    flash("You have to be logged in to access this page.", 'warning')
+    # flash("You have to be logged in to access this page.", 'warning')
     return redirect(url_for('main.login'))

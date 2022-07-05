@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask_jwt_extended import jwt_required
 
-main = Blueprint("main", __name__, url_prefix="/api/v1/")
+main = Blueprint("main", __name__)
 
 
 @main.route('/home')

@@ -20,7 +20,7 @@ def create_app(test_config=None):
             JWT_TOKEN_LOCATION=['cookies'],
             JWT_COOKIE_SECURE=True,
             JWT_COOKIE_CSRF_PROTECT=False,
-            JWT_ACCESS_COOKIE_PATH='/api/v1/'
+            JWT_ACCESS_COOKIE_PATH='/'
         )
     else:
         app.config.from_mapping(test_config)

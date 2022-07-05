@@ -52,7 +52,7 @@
     {% block content %}
 
         {% block logos %}
-            <div class="container">
+            <div class="center">
                 <img src="/static/images/bookmark_logo.png" alt="logo" >
                 <img src="/static/images/bookmark.png" alt="logo" width="100" height="100">
             </div>
@@ -60,14 +60,14 @@
 
         {% block content_messages %}
             <br>
-                  <div class="container">
+                  <div class="center">
 
                       {% with messages = get_flashed_messages(with_categories=True) %}
                           {% if messages %}
                             {% for category, message in messages %}
 
                                 {% if category == 'success' %}
-                                  <div class="alert alert-dismissible alert-success" role="alert" style="max-width: 30rem;">
+                                  <div class="alert alert-dismissible alert-success center" role="alert" style="max-width: 30rem;">
                                     <h4 class="alert-heading">Success!</h4>
                                     <p class="mb-0">{{ message }}</p>
                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -75,7 +75,7 @@
                                 {% endif %}
 
                                 {% if category == 'warning' %}
-                                  <div class="alert alert-dismissible alert-warning" role="alert" style="max-width: 30rem;">
+                                  <div class="alert alert-dismissible alert-warning center" role="alert" style="max-width: 30rem;">
                                     <h4 class="alert-heading">Warning!</h4>
                                     <p class="mb-0">{{ message }}</p>
                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -83,7 +83,7 @@
                                 {% endif %}
 
                                 {% if category == 'error' %}
-                                  <div class="alert alert-dismissible alert-danger" role="alert" style="max-width: 30rem;">
+                                  <div class="alert alert-dismissible alert-danger center" role="alert" style="max-width: 30rem;">
                                     <h4 class="alert-heading">Error!</h4>
                                     <p class="mb-0">{{ message }}</p>
                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

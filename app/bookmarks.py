@@ -3,7 +3,7 @@ import validators
 from app.database import Bookmark, db
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-bookmarks = Blueprint("bookmarks", __name__, url_prefix="/api/v1/bookmarks")
+bookmarks = Blueprint("bookmarks", __name__, url_prefix="/bookmarks")
 
 
 @bookmarks.route("/", methods=['GET', 'POST'])

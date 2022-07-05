@@ -7,26 +7,26 @@
 
 
 {% block content %}
-    	<div class="container" id="wrapper">
+    	<div class="center" id="wrapper">
             <div class="row">
                 <h3>ADDING BOOKMARK</h3>
 
             <form action="{{ url_for('bookmarks.handle_bookmarks') }}" method="post">
-                  <div class="form-group">
+                  <div class="center">
                       <fieldset>
-                        <div class="form-group" style="max-width: 20rem;">
+                        <div class="center" style="max-width: 20rem;">
                           <label for="exampleInputEmail1" class="form-label mt-4">URL</label>
                           <input name="input-url" type="text" class="form-control" id="add-bookmark-submit-button" aria-describedby="emailHelp" placeholder="Put URL here">
                         </div>
 
-                        <div class="form-group" style="max-width: 20rem;">
+                        <div class="center" style="max-width: 20rem;">
                           <label for="exampleInputPassword1" class="form-label mt-4">Body</label>
                             <label for="add-bookmark-submit-button"></label>
                             <input name="input-body" type="text" class="form-control" id="add-bookmark-submit-button" placeholder="Put description here" >
                         </div>
 
                     </fieldset><br>
-                          <span class="input-group-btn">
+                          <span class="center input-group-btn">
                               <input type="submit" class="btn btn-success" id="add-btn2">
                           </span>
                   </div>

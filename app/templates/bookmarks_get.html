@@ -7,14 +7,14 @@
 
 
 {% block content %}
-    	<div class="container" id="wrapper">
+    	<div class="center" id="wrapper">
             <div class="row">
 
                 <h1>BOOKMARKS LIST</h1>
 
                           {% if bookmarks %}
                             {% for bookmark in bookmarks %}
-                                <div class="card mb-3" style="max-width: 20rem;">
+                                <div class="center card mb-3" style="max-width: 20rem;">
                                   <h3 class="card-header">Bookmark</h3>
                                   <div class="card-body">
                                     <h6 class="card-subtitle text-muted">{{ bookmark.url }}</h6>
